@@ -1,0 +1,35 @@
+{
+  "name": "database",
+  "private": true,
+  "description": "Database stuff",
+  "version": "0.0.1",
+  "homepage": "Home Page",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/classdojo/MODULE.git"
+  },
+  "author": "Chris Olivares",
+  "main": "./index",
+  "scripts": {
+    "watch": "coffee -c -w  -o lib src",
+    "prepublish": "coffee -c -o lib src",
+    "prestart": "coffee -c -o lib src",
+    "start" : "node index.js"
+  },
+  "directories": {
+    "lib": "."
+  },
+  "dependencies" : { 
+    "coffee-script": "1.4.0",
+    "dojo-settings": "git+ssh://git@github.com:classdojo/dojo-settings#HEAD",
+    "mongoose-builder": "git+ssh://git@github.com:cdolivares/mongoose-builder#HEAD",
+    "model-builder": "git+ssh://git@github.com:cdolivares/model-builder#HEAD"
+  },
+  "devDependencies": {
+    "mocha": "1.7.x",
+    "expect.js": "0.2.0"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  }
+}
