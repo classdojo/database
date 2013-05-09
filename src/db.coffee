@@ -34,11 +34,13 @@ class Db
     configs.  The result should be a JSON object.
   ###
 
-  init: (callback) ->
+  init: () ->
     @_nodeBuilder = new ModelNodeBuilder(@_schemaPath)
     @_nodeBuilder.init()
     @_dbBuilder = new MongooseB(@_nodeBuilder, @settings)
 
+
+  connect: (callback) ->
     director = new ModelDirector @_dbBuilder
     director.build (err) =>
       console.log "Database Initialized..."
