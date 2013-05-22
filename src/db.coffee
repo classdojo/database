@@ -38,6 +38,7 @@ class Db
     @_nodeBuilder = new ModelNodeBuilder(@_schemaPath)
     @_nodeBuilder.init()
     @_dbBuilder = new MongooseB(@_nodeBuilder, @settings)
+    @
 
 
   connect: (callback) ->
