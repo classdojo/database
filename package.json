@@ -2,7 +2,7 @@
   "name": "database",
   "private": true,
   "description": "Database stuff",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "Home Page",
   "repository": {
     "type": "git",

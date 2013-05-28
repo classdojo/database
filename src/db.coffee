@@ -40,7 +40,7 @@ class Db
   init: () ->
     @__nodeBuilder = new ModelNodeBuilder(@__schemaPath)
     @__nodeBuilder.init()
-    @__nodeManager = new NodeManager()
+    @__nodeManager = new NodeManager(@__nodeBuilder.nodes)
     @__dbBuilder = new MongooseB(@__nodeBuilder, @settings)
     @
 
