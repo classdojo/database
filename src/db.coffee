@@ -7,8 +7,11 @@ MongooseBuilder = require("mongoose-builder")
 ModelGraph       = ModelBuilder.Graph
 ModelDirector    = ModelBuilder.Director
 ModelNodeBuilder = ModelBuilder.NodeBuilder
+NodeManager      = ModelBuilder.NodeManager
+
 
 MongooseB  = MongooseBuilder.Builder
+
 
 class Db
 
@@ -20,9 +23,9 @@ class Db
   ###
 
   constructor: (schemaPath, dbSettingsPath) ->
-    @_schemaPath      = schemaPath
-    @_dbSettingsPath  = dbSettingsPath
-    @_files           = {}
+    @__schemaPath      = schemaPath
+    @__dbSettingsPath  = dbSettingsPath
+    @__files           = {}
 
   ###
     Method: loadConfigs
@@ -35,18 +38,25 @@ class Db
   ###
 
   init: () ->
-    @_nodeBuilder = new ModelNodeBuilder(@_schemaPath)
-    @_nodeBuilder.init()
-    @_dbBuilder = new MongooseB(@_nodeBuilder, @settings)
+    @__nodeBuilder = new ModelNodeBuilder(@__schemaPath)
+    @__nodeBuilder.init()
+    @__nodeManager = new NodeManager()
+    @__dbBuilder = new MongooseB(@__nodeBuilder, @settings)
     @
 
 
   connect: (callback) ->
-    director = new ModelDirector @_dbBuilder
+    director = new ModelDirector @__dbBuilder
     director.build (err) =>
       console.log "Database Initialized..."
       graph = new ModelGraph()
       director.setGraph graph
+      ###
+        TODO(chris): Make it more intuitive that
+        the director should set the nodeManager or
+        vice-versa
+      ###
+      graph.setNodeManager @__nodeManager
       callback null, graph
 
 
@@ -58,7 +68,7 @@ class Db
   ###
 
   registerPlugin: (args...) ->
-    @_dbBuilder.registerPlugin.apply @_dbBuilder, args
+    @__dbBuilder.registerPlugin.apply @__dbBuilder, args
 
 
   ###
@@ -72,8 +82,8 @@ class Db
   ###
 
   @::__defineGetter__ 'settings', () ->
-    @_files.settings || @_files.settings = (() =>
-      return require(@_dbSettingsPath).init(process.env.NODE_ENV)
+    @__files.settings || @__files.settings = (() =>
+      return require(@__dbSettingsPath).init(process.env.NODE_ENV)
     )()
 
 
