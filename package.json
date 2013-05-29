@@ -21,7 +21,6 @@
   },
   "dependencies" : { 
     "coffee-script": "1.4.0",
-    "dojo-settings": "git+ssh://git@github.com:classdojo/dojo-settings#HEAD",
     "mongoose-builder": "git+ssh://git@github.com:cdolivares/mongoose-builder#HEAD",
     "model-builder": "git+ssh://git@github.com:cdolivares/model-builder#HEAD"
   },
