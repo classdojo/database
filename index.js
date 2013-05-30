@@ -1,6 +1,4 @@
 (function(m) {
-  var db;
-  db = require("./lib/db")
-
-  m.exports = db;
+  exports.database = require("./lib/db");
+  exports.BaseSchema = require("model-builder").BaseSchema;
 })(module);
