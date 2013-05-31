@@ -9,6 +9,7 @@
     "url": "http://github.com/classdojo/MODULE.git"
   },
   "author": "Chris Olivares",
+  "license": "MIT",
   "main": "./index",
   "scripts": {
     "watch": "coffee -c -w  -o lib src",
