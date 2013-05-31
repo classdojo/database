@@ -22,8 +22,8 @@
   },
   "dependencies" : { 
     "coffee-script": "1.4.0",
-    "mongoose-builder": "git+ssh://git@github.com:cdolivares/mongoose-builder#HEAD",
-    "model-builder": "git+ssh://git@github.com:cdolivares/model-builder#HEAD"
+    "mongoose-builder": "git+ssh://git@github.com:classdojo/mongoose-builder#master",
+    "model-builder": "git+ssh://git@github.com:classdojo/model-builder#master"
   },
   "devDependencies": {
     "mocha": "1.7.x",
