@@ -22,9 +22,7 @@ class Db
     dbSettings files are.
   ###
 
-  constructor: (schemaPath, dbSettingsPath) ->
-    @__schemaPath      = schemaPath
-    @__dbSettingsPath  = dbSettingsPath
+  constructor: (@__schema, @__dbSettings) ->
     @__files           = {}
 
   ###
@@ -38,10 +36,10 @@ class Db
   ###
 
   init: () ->
-    @__nodeBuilder = new ModelNodeBuilder(@__schemaPath)
+    @__nodeBuilder = new ModelNodeBuilder(@__schema)
     @__nodeBuilder.init()
     @__nodeManager = new NodeManager(@__nodeBuilder.nodes)
-    @__dbBuilder = new MongooseB(@__nodeBuilder, @settings)
+    @__dbBuilder = new MongooseB(@__nodeBuilder, @__nodeManager, @settings)
     @
 
 
@@ -83,7 +81,7 @@ class Db
 
   @::__defineGetter__ 'settings', () ->
     @__files.settings || @__files.settings = (() =>
-      return require(@__dbSettingsPath).init(process.env.NODE_ENV)
+      return @__dbSettings.init(process.env.NODE_ENV)
     )()
 
 
