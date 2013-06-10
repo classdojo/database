@@ -81,7 +81,7 @@ class Db
 
   @::__defineGetter__ 'settings', () ->
     @__files.settings || @__files.settings = (() =>
-      return @__dbSettings.init(process.env.NODE_ENV)
+      return if @__dbSettings.init? then @__dbSettings.init(process.env.NODE_ENV) else @__dbSettings
     )()
 
 
