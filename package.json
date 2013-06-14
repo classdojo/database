@@ -23,7 +23,7 @@
   "dependencies" : { 
     "coffee-script": "1.4.0",
     "mongoose-builder": "git+ssh://git@github.com:classdojo/mongoose-builder#dev",
-    "model-builder": "git+ssh://git@github.com:classdojo/model-builder#dev2"
+    "model-builder": "git+ssh://git@github.com:classdojo/model-builder#dev"
   },
   "devDependencies": {
     "mocha": "1.7.x",
